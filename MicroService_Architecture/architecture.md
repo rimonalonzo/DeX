@@ -2,6 +2,6 @@ Model - MS:
 
 Model - DB:
 
-Mocel - Observability:
+Model - Observability:
 
 Model - integration:
