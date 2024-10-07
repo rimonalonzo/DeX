@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub-credentials')
+        image = ''
+    } 
+    
+    stages {
+        stage('Clone Docker example') {
+            steps {
+                git([url:'https://github.com/rimonalonzo/JenkinsHW.git', branch: 'main'])    
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                script {
+                    image = docker.build "rimonalonzo/my-image:${env.BUILD_ID}"    
+                }
+                
+            }
+        }
+        
+        stage('Deploy our image') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', "docker-hub-credentials") { 
+                        image.push() 
+                    }
+                } 
+            }
+        } 
+    }
+}
