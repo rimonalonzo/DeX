@@ -1,0 +1,17 @@
+database:
+  dbname: db_mysql
+  dbtable: music
+pods:
+  image: yanivomc/spring-music
+  tag: latest
+  imagePullPolicy: IfNotPresent
+  containerPort: 8080
+deployment:
+  replicas: 5
+service:
+  type: NodePort
+  port: 80
+  targetPort: 8080
+food:
+  drink: beer
+  eat: Peanut Butter and Jelly sandwich

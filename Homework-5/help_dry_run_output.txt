@@ -1,0 +1,94 @@
+NAME: spring
+LAST DEPLOYED: Tue Nov  5 00:02:43 2024
+NAMESPACE: default
+STATUS: pending-install
+REVISION: 1
+TEST SUITE: None
+USER-SUPPLIED VALUES:
+{}
+
+COMPUTED VALUES:
+database:
+  dbname: db_mysql
+  dbtable: music
+deployment:
+  replicas: 5
+food:
+  drink: beer
+  eat: Peanut Butter and Jelly sandwich
+pods:
+  containerPort: 8080
+  image: yanivomc/spring-music
+  imagePullPolicy: IfNotPresent
+  tag: latest
+service:
+  port: 80
+  targetPort: 8080
+  type: NodePort
+
+HOOKS:
+MANIFEST:
+---
+# Source: spring/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-music
+  labels:
+    
+    generator: helm
+    app-name: spring
+    date: 2024-11-05
+    version: 0.1.0
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  selector:
+    
+    generator: helm
+    app-name: spring
+    date: 2024-11-05
+    version: 0.1.0
+---
+# Source: spring/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-spring-0.1.0
+  labels:
+    
+    generator: helm
+    app-name: spring
+    date: 2024-11-05
+    version: 0.1.0
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      
+      generator: helm
+      app-name: spring
+      date: 2024-11-05
+      version: 0.1.0
+  template:
+    metadata:
+      labels:
+        
+        generator: helm
+        app-name: spring
+        date: 2024-11-05
+        version: 0.1.0
+    spec:
+      containers:
+        - name: spring
+          image: "yanivomc/spring-music:latest"
+          imagePullPolicy: IfNotPresent
+          ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP
+
