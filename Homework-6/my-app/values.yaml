@@ -1,0 +1,14 @@
+pods:
+  image: nginx
+  tag: latest
+  imagePullPolicy: IfNotPresent
+  containerPort: 8080
+deployment:
+  replicas: 2
+service:
+  type: NodePort
+  port: 80
+  targetPort: 8080
+database:
+  dbname: db_mysql-test
+  dbtable: music
