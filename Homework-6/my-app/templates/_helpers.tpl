@@ -1,5 +1,5 @@
 {{/* This is a comment - Generate basic labels */}}
-{{- define "spring.labels" }}
+{{- define "my-app.labels" }}
 generator: helm
 app-name: {{ .Chart.Name }}
 date: {{ now | htmlDate }}
