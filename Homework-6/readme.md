@@ -1,5 +1,6 @@
 I assumed 2 pods meaning was 2 replicas.  
-  
+Used manual sync policy.
+
 used this command:  
 kubectl apply -f argocdproj.yaml -n argocd  
   
